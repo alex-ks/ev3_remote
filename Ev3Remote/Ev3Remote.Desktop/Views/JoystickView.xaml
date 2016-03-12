@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Ev3Remote.Desktop.Views.JoystickView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ev3Remote.Desktop.Views"
+             xmlns:root="clr-namespace:Ev3Remote.Desktop"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="{Binding Name}" 
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Column="0"/>
+        
+        <Button Content="{x:Static root:Resources.ConnectLabel}"
+                cal:Message.Attach="Connect"
+                IsEnabled="{Binding NotConnected}"
+                Width="160"
+                Margin="10"
+                Grid.Column="1"/>
+    </Grid>
+</UserControl>

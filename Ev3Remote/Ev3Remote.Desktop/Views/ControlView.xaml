@@ -1,0 +1,27 @@
+﻿<Window x:Class="Ev3Remote.Desktop.Views.ControlView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:root="clr-namespace:Ev3Remote.Desktop"
+        xmlns:cal="http://www.caliburnproject.org"
+        mc:Ignorable="d" 
+        d:DesignHeight="300" d:DesignWidth="400"
+        Height="330" Width="400"
+        Title="{Binding Name}"
+        cal:Message.Attach="[Event Closing] = [Action OnClose]">
+    <Grid>
+        <Canvas>
+            <TextBlock Padding="11" TextAlignment="Center" Background="{Binding ActionButton}" Text="{x:Static root:Resources.ActionButton}" Height="50" Width="100" Canvas.Left="280" Canvas.Top="120"></TextBlock>
+
+            <TextBlock Padding="11" TextAlignment="Center" Background="{Binding Position0}" Height="50" Width="50" Text="{x:Static root:Resources.Position0}" Canvas.Left="110" Canvas.Top="20"/>
+            <TextBlock Padding="11" TextAlignment="Center" Background="{Binding Position1}" Height="50" Width="50" Text="{x:Static root:Resources.Position1}" Canvas.Left="180" Canvas.Top="50"/>
+            <TextBlock Padding="11" TextAlignment="Center" Background="{Binding Position2}" Height="50" Width="50" Text="{x:Static root:Resources.Position2}" Canvas.Left="210" Canvas.Top="120"/>
+            <TextBlock Padding="11" TextAlignment="Center" Background="{Binding Position3}" Height="50" Width="50" Text="{x:Static root:Resources.Position3}" Canvas.Left="180" Canvas.Top="190"/>
+            <TextBlock Padding="11" TextAlignment="Center" Background="{Binding Position4}" Height="50" Width="50" Text="{x:Static root:Resources.Position4}" Canvas.Left="110" Canvas.Top="220"/>
+            <TextBlock Padding="11" TextAlignment="Center" Background="{Binding Position5}" Height="50" Width="50" Text="{x:Static root:Resources.Position5}" Canvas.Left="40" Canvas.Top="190"/>
+            <TextBlock Padding="11" TextAlignment="Center" Background="{Binding Position6}" Height="50" Width="50" Text="{x:Static root:Resources.Position6}" Canvas.Left="10" Canvas.Top="120"/>
+            <TextBlock Padding="11" TextAlignment="Center" Background="{Binding Position7}" Height="50" Width="50" Text="{x:Static root:Resources.Position7}" Canvas.Left="40" Canvas.Top="50"/>
+        </Canvas>
+    </Grid>
+</Window>
