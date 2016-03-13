@@ -61,6 +61,15 @@ namespace Ev3Remote.Desktop {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to COM port is not selected..
+        /// </summary>
+        public static string ComPortNotSelected {
+            get {
+                return ResourceManager.GetString("ComPortNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This COM port is already used..
         /// </summary>
         public static string ComPortUsed {
@@ -192,6 +201,33 @@ namespace Ev3Remote.Desktop {
         public static string ScanLabel {
             get {
                 return ResourceManager.GetString("ScanLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connected.
+        /// </summary>
+        public static string StatusConnected {
+            get {
+                return ResourceManager.GetString("StatusConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connecting....
+        /// </summary>
+        public static string StatusConnecting {
+            get {
+                return ResourceManager.GetString("StatusConnecting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not connected.
+        /// </summary>
+        public static string StatusNotConnected {
+            get {
+                return ResourceManager.GetString("StatusNotConnected", resourceCulture);
             }
         }
     }

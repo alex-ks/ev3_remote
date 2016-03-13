@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Caliburn.Micro;
 using SharpDX.DirectInput;
 
@@ -21,6 +20,7 @@ namespace Ev3Remote.Desktop.ViewModels
 		}
 
 		public BindableCollection<JoystickViewModel> Joysticks { get; set; }
+		
 
 		private void FillJoysticksFrom( IList<DeviceInstance> deviceList )
 		{

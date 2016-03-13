@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using Caliburn.Micro;
 using SharpDX.DirectInput;
@@ -21,6 +20,8 @@ namespace Ev3Remote.Desktop.ViewModels
 		public string Name { get; set; }
 
 		private string _comPortName;
+
+		public BindableCollection<string> ComPorts { get; set; }
 
 		public string ComPortName
 		{
@@ -50,6 +51,7 @@ namespace Ev3Remote.Desktop.ViewModels
 		public JoystickViewModel( IWindowManager manager )
 		{
 			_manager = manager;
+			ComPorts = new BindableCollection<string>( SerialPort.GetPortNames( ) );
 		}
 
 		public bool Connected
@@ -80,6 +82,12 @@ namespace Ev3Remote.Desktop.ViewModels
 					MessageBox.Show( Resources.ComPortUsed, Resources.Error, MessageBoxButton.OK, MessageBoxImage.Warning );
 					return;
 				}
+			}
+
+			if ( ComPortName == null )
+			{
+				MessageBox.Show( Resources.ComPortNotSelected, Resources.Error, MessageBoxButton.OK, MessageBoxImage.Warning );
+				return;
 			}
 
 			_manager.ShowDialog( new ControlViewModel( this ) );

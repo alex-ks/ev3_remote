@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -43,6 +40,7 @@ namespace Ev3Remote.Desktop.ViewModels
 			RightButton = GhostWhite;
 			_brick = new Brick( new BluetoothCommunication( _joyModel.ComPortName ) );
 			Action listening = Listen;
+			ConnectionStatus = Resources.StatusNotConnected;
 			listening.BeginInvoke( OnListeningEnd, null );
 		}
 
@@ -118,12 +116,12 @@ namespace Ev3Remote.Desktop.ViewModels
 			else if ( value > 0 )
 			{
 				RightButton = OrangeRed;
-				_brick.DirectCommand.TurnMotorAtPowerAsync( OutputPort.A, 75 );
+				_brick.DirectCommand.TurnMotorAtPowerAsync( OutputPort.A, 50 );
 			}
 			else
 			{
 				LeftButton = OrangeRed;
-				_brick.DirectCommand.TurnMotorAtPowerAsync( OutputPort.A, -75 );
+				_brick.DirectCommand.TurnMotorAtPowerAsync( OutputPort.A, -50 );
 			}
 		}
 
@@ -135,6 +133,7 @@ namespace Ev3Remote.Desktop.ViewModels
 
 			try
 			{
+				ConnectionStatus = Resources.StatusConnecting;
 				var connectTask = _brick.ConnectAsync( TimeSpan.Zero );
 				connectTask.Wait( WaitPeriod );
 
@@ -145,6 +144,8 @@ namespace Ev3Remote.Desktop.ViewModels
 
 				joystick.Properties.BufferSize = 128;
 				joystick.Acquire( );
+
+				ConnectionStatus = Resources.StatusConnected;
 
 				while ( _connected )
 				{
@@ -227,6 +228,20 @@ namespace Ev3Remote.Desktop.ViewModels
 		public void OnListeningEnd( IAsyncResult result )
 		{
 			TryClose( );
+		}
+
+		private string _status;
+		public string ConnectionStatus
+		{
+			get { return _status; }
+			set
+			{
+				if ( _status != value )
+				{
+					_status = value;
+					NotifyOfPropertyChange( ( ) => ConnectionStatus );
+				}
+			}
 		}
 
 		public SolidColorBrush Position0

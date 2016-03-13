@@ -12,7 +12,12 @@
         ResizeMode="NoResize"
         cal:Message.Attach="[Event Closing] = [Action OnClose]">
     <Grid>
-        <Canvas>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        
+        <Canvas Grid.Row="0">
             <TextBlock Padding="11" TextAlignment="Center" Background="{Binding LeftButton}" Text="{x:Static root:Resources.LeftButton}" Height="50" Width="50" Canvas.Left="280" Canvas.Top="120"></TextBlock>
             <TextBlock Padding="11" TextAlignment="Center" Background="{Binding RightButton}" Text="{x:Static root:Resources.RightButton}" Height="50" Width="50" Canvas.Left="330" Canvas.Top="120"></TextBlock>
 
@@ -25,5 +30,10 @@
             <TextBlock Padding="11" TextAlignment="Center" Background="{Binding Position6}" Height="50" Width="50" Text="{x:Static root:Resources.Position6}" Canvas.Left="10" Canvas.Top="120"/>
             <TextBlock Padding="11" TextAlignment="Center" Background="{Binding Position7}" Height="50" Width="50" Text="{x:Static root:Resources.Position7}" Canvas.Left="40" Canvas.Top="50"/>
         </Canvas>
+        
+        <TextBlock Text="{Binding ConnectionStatus}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Grid.Row="1"/>
     </Grid>
 </Window>
