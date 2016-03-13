@@ -61,15 +61,6 @@ namespace Ev3Remote.Desktop {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Action.
-        /// </summary>
-        public static string ActionButton {
-            get {
-                return ResourceManager.GetString("ActionButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This COM port is already used..
         /// </summary>
         public static string ComPortUsed {
@@ -102,6 +93,15 @@ namespace Ev3Remote.Desktop {
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LB.
+        /// </summary>
+        public static string LeftButton {
+            get {
+                return ResourceManager.GetString("LeftButton", resourceCulture);
             }
         }
         
@@ -174,6 +174,15 @@ namespace Ev3Remote.Desktop {
         public static string Position7 {
             get {
                 return ResourceManager.GetString("Position7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RB.
+        /// </summary>
+        public static string RightButton {
+            get {
+                return ResourceManager.GetString("RightButton", resourceCulture);
             }
         }
         

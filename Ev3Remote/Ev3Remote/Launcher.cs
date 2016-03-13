@@ -14,7 +14,7 @@ namespace Ev3Remote
 {
 	public class Launcher
 	{
-		public static void Main( string[] args )
+		public static void MainBrick( string[] args )
 		{
 			Brick brick = new Brick( new BluetoothCommunication( "COM3" ) );
 			var task = brick.ConnectAsync( TimeSpan.FromSeconds( 2 ) );
@@ -23,7 +23,7 @@ namespace Ev3Remote
 			brick.DirectCommand.StopMotorAsync( OutputPort.B, false );
 		}
 
-		public static void MainInput( string[] args )
+		public static void Main( string[] args )
 		{
 			using ( var directInput = new DirectInput( ) )
 			{

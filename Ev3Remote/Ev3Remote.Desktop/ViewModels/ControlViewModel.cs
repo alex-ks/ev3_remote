@@ -24,7 +24,7 @@ namespace Ev3Remote.Desktop.ViewModels
 		private static readonly SolidColorBrush OrangeRed = new SolidColorBrush( Colors.OrangeRed );
 
 		private readonly JoystickViewModel _joyModel;
-		private SolidColorBrush _pos0, _pos1, _pos2, _pos3, _pos4, _pos5, _pos6, _pos7, _action;
+		private SolidColorBrush _pos0, _pos1, _pos2, _pos3, _pos4, _pos5, _pos6, _pos7, _left, _right;
 
 		private readonly Brick _brick;
 		private bool _connected;
@@ -39,7 +39,8 @@ namespace Ev3Remote.Desktop.ViewModels
 			Name = joyModel.Name;
 			_joyModel = joyModel;
 			ClearPositions( );
-			ActionButton = GhostWhite;
+			LeftButton = GhostWhite;
+			RightButton = GhostWhite;
 			_brick = new Brick( new BluetoothCommunication( _joyModel.ComPortName ) );
 			Action listening = Listen;
 			listening.BeginInvoke( OnListeningEnd, null );
@@ -108,7 +109,22 @@ namespace Ev3Remote.Desktop.ViewModels
 
 		private void HandleActionButtonChange( int value )
 		{
-			ActionButton = value != 0 ? OrangeRed : GhostWhite;
+			if ( value == 0 )
+			{
+				LeftButton = GhostWhite;
+				RightButton = GhostWhite;
+				_brick.DirectCommand.StopMotorAsync( OutputPort.A, false );
+			}
+			else if ( value > 0 )
+			{
+				RightButton = OrangeRed;
+				_brick.DirectCommand.TurnMotorAtPowerAsync( OutputPort.A, 75 );
+			}
+			else
+			{
+				LeftButton = OrangeRed;
+				_brick.DirectCommand.TurnMotorAtPowerAsync( OutputPort.A, -75 );
+			}
 		}
 
 		private void Listen( )
@@ -140,7 +156,10 @@ namespace Ev3Remote.Desktop.ViewModels
 						ClearPositions( );
 						switch ( update.Offset )
 						{
-							case JoystickOffset.Buttons0:
+							case JoystickOffset.Buttons4:
+								HandleActionButtonChange( -update.Value );
+								break;
+							case JoystickOffset.Buttons5:
 								HandleActionButtonChange( update.Value );
 								break;
 							case JoystickOffset.PointOfViewControllers0:
@@ -314,15 +333,28 @@ namespace Ev3Remote.Desktop.ViewModels
 			}
 		}
 
-		public SolidColorBrush ActionButton
+		public SolidColorBrush LeftButton
 		{
-			get { return _action; }
+			get { return _left; }
 			set
 			{
-				if ( _action != value )
+				if ( _left != value )
 				{
-					_action = value;
-					NotifyOfPropertyChange( ( ) => ActionButton );
+					_left = value;
+					NotifyOfPropertyChange( ( ) => LeftButton );
+				}
+			}
+		}
+
+		public SolidColorBrush RightButton
+		{
+			get { return _right; }
+			set
+			{
+				if ( _right != value )
+				{
+					_right = value;
+					NotifyOfPropertyChange( ( ) => RightButton );
 				}
 			}
 		}

@@ -82,7 +82,7 @@ namespace Ev3Remote.Desktop.ViewModels
 				}
 			}
 
-			_manager.ShowWindow( new ControlViewModel( this ) );
+			_manager.ShowDialog( new ControlViewModel( this ) );
 		}
 	}
 }
