@@ -12,18 +12,24 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
         <TextBlock Text="{Binding Name}" 
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    Grid.Column="0"/>
-        
+
+        <TextBox Text="{Binding ComPortName, UpdateSourceTrigger=PropertyChanged}"
+                 Height="30"
+                 Margin="10"
+                 Grid.Column="1"/>
+
         <Button Content="{x:Static root:Resources.ConnectLabel}"
                 cal:Message.Attach="Connect"
                 IsEnabled="{Binding NotConnected}"
                 Width="160"
                 Margin="10"
-                Grid.Column="1"/>
+                Grid.Column="2"/>
     </Grid>
 </UserControl>

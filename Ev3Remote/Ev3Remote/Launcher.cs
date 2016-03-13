@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Lego.Ev3.Core;
 using Lego.Ev3.Desktop;
@@ -13,15 +14,16 @@ namespace Ev3Remote
 {
 	public class Launcher
 	{
-		public static void MainBrick( string[] args )
+		public static void Main( string[] args )
 		{
-			Brick brick = new Brick( new BluetoothCommunication( "COM4" ) );
-			brick.ConnectAsync( ).Wait( );
+			Brick brick = new Brick( new BluetoothCommunication( "COM3" ) );
+			var task = brick.ConnectAsync( TimeSpan.FromSeconds( 2 ) );
+			task.Wait( );
 			brick.DirectCommand.TurnMotorAtPowerAsync( OutputPort.B, 75 );
 			brick.DirectCommand.StopMotorAsync( OutputPort.B, false );
 		}
 
-		public static void Main( string[] args )
+		public static void MainInput( string[] args )
 		{
 			using ( var directInput = new DirectInput( ) )
 			{

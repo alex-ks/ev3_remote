@@ -70,11 +70,38 @@ namespace Ev3Remote.Desktop {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This COM port is already used..
+        /// </summary>
+        public static string ComPortUsed {
+            get {
+                return ResourceManager.GetString("ComPortUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connect.
         /// </summary>
         public static string ConnectLabel {
             get {
                 return ResourceManager.GetString("ConnectLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot connect to device via bluetooth: time is out..
+        /// </summary>
+        public static string ConnectTimeout {
+            get {
+                return ResourceManager.GetString("ConnectTimeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         

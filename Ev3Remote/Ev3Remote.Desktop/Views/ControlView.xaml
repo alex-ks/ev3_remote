@@ -9,6 +9,7 @@
         d:DesignHeight="300" d:DesignWidth="400"
         Height="330" Width="400"
         Title="{Binding Name}"
+        ResizeMode="NoResize"
         cal:Message.Attach="[Event Closing] = [Action OnClose]">
     <Grid>
         <Canvas>
